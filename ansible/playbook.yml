@@ -1,0 +1,17 @@
+---
+- name: Setup Raspberry Pis
+  hosts: local
+  become: yes
+  gather_facts: yes
+
+  collections:
+    - artis3n.tailscale
+
+  vars:
+    tailscale_authkey: "{{ lookup('env', 'TAILSCALE_AUTHKEY') }}"
+    tailscale_args: "--ssh"
+
+  roles:
+    - { role: docker, tags: ["docker"] }
+    - { role: artis3n.tailscale.machine, tags: ["tailscale"] }
+    - { role: home-assistant, tags: ["home-assistant"] }

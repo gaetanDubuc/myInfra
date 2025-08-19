@@ -1,3 +1,1 @@
-# Mon Projet
-
-Une courte description de mon projet.
+This project aims to simplify the management and deployment of various services on Raspberry Pi devices using Ansible. The primary focus is on setting up a home automation environment with Home Assistant, Docker, and Tailscale for secure remote access.

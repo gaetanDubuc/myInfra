@@ -1,0 +1,23 @@
+- name: Create Home Assistant config directory
+  file:
+    path: /home/pi/homeassistant
+    state: directory
+    owner: pi
+    group: pi
+    mode: '0755'
+
+- name: Run Home Assistant container
+  community.docker.docker_container:
+    name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart_policy: unless-stopped
+    network_mode: host
+    volumes:
+      - /home/gaetan/homeassistant:/config
+    environment:
+      TZ: Europe/Paris
+    privileged: true
+    pull: true
+    detach: true
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
